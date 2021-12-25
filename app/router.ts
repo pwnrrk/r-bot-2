@@ -24,9 +24,10 @@ export class CommandRouter {
     );
   }
   async register(commands: Command[], guilds: Guild[]) {
-    try {
-      console.log("Started refreshing application (/) commands.");
-      guilds.forEach(async (guild) => {
+    console.log("Started refreshing application (/) commands.");
+    for (let index = 0; index < guilds.length; index++) {
+      const guild = guilds[index];
+      try {
         await this.rest.put(
           Routes.applicationGuildCommands(
             process.env.CLIENT_ID as string,
@@ -36,10 +37,10 @@ export class CommandRouter {
             body: commands,
           }
         );
-      });
-      console.log("Successfully reloaded application (/) commands.");
-    } catch (error) {
-      console.error(error);
+      } catch (error) {
+        console.log(error);
+      }
     }
+    console.log("Successfully reloaded application (/) commands.");
   }
 }
