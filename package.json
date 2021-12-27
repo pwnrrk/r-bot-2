@@ -33,6 +33,7 @@
     "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "libsodium-wrappers": "^0.7.9"
+    "libsodium-wrappers": "^0.7.9",
+    "music-metadata": "^7.11.4"
   }
 }

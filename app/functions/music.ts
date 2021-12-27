@@ -1,8 +1,11 @@
+import { createAudioResource } from "@discordjs/voice";
 import { CommandInteraction } from "discord.js";
-import fs from "fs";
-import path from "path";
+import app from "../..";
 
 export async function list(interaction: CommandInteraction) {
-  const files = fs.readdirSync(path.join(path.resolve(), "storage"));
-  await interaction.reply(`Total ${files.length} song`);
+  await interaction.reply(`Total ${app.musics.length} song`);
+}
+export function getNextResource() {
+  const resource = createAudioResource("");
+  return resource;
 }

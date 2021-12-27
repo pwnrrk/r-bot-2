@@ -1,11 +1,16 @@
 import { Client, Intents } from "discord.js";
+import { AudioPlayer, createAudioPlayer } from "@discordjs/voice";
 import { commands } from "../routes/routes";
 import { CommandRouter } from "./router";
-import { commandHandler } from "./utilities";
+import { commandHandler, getMusicList } from "./utilities";
 
 export default class App extends Client {
+  musics: string[];
+  player: AudioPlayer;
   constructor() {
     super({ intents: [Intents.FLAGS.GUILDS] });
+    this.musics = getMusicList();
+    this.player = createAudioPlayer();
   }
   start() {
     this.on("ready", () => {

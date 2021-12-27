@@ -10,3 +10,4 @@ process.on("unhandledRejection", (error: Error) => {
 
 const app = new App();
 app.start();
+export default app;
