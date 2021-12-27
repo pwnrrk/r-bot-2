@@ -43,4 +43,20 @@ export class CommandRouter {
     }
     console.log("Successfully reloaded application (/) commands.");
   }
+  async registerOne(commands: Command[], guildId: string) {
+    try {
+      await this.rest.put(
+        Routes.applicationGuildCommands(
+          process.env.CLIENT_ID as string,
+          guildId
+        ),
+        {
+          body: commands,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(`Register new guild ${guildId}`);
+  }
 }

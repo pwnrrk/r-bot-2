@@ -39,5 +39,9 @@ export default class App extends Client {
       if (!interaction.isCommand()) return;
       commandHandler(interaction);
     });
+    this.on("guildCreate", (guild) => {
+      const commandRouter = new CommandRouter();
+      commandRouter.registerOne(commands, guild.id);
+    });
   }
 }
