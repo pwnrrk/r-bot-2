@@ -7,6 +7,7 @@ import {
 import { CommandInteraction, Guild, GuildMember } from "discord.js";
 import app from "../..";
 import Music from "../interfaces/music";
+import { getMusicList } from "../utilities";
 
 export async function list(interaction: CommandInteraction) {
   await interaction.reply(`Total ${app.musics?.length} song`);
@@ -63,4 +64,8 @@ export async function leaveVoice(interaction: CommandInteraction) {
   const connection = getVoiceConnection(interaction.guildId);
   connection?.destroy();
   await interaction.reply("Bye");
+}
+
+export async function refreshMusicList() {
+  app.musics = await getMusicList();
 }
