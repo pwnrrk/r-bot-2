@@ -69,3 +69,9 @@ export async function leaveVoice(interaction: CommandInteraction) {
 export async function refreshMusicList() {
   app.musics = await getMusicList();
 }
+
+export async function getNowPlaying(interaction: CommandInteraction) {
+  await interaction.reply(
+    `Now playing ${app.nowPlaying?.title} by ${app.nowPlaying?.artist}`
+  );
+}

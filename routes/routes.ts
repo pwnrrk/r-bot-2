@@ -1,5 +1,10 @@
 import { ping } from "../app/functions/general";
-import { joinMusic, leaveVoice, list } from "../app/functions/music";
+import {
+  getNowPlaying,
+  joinMusic,
+  leaveVoice,
+  list,
+} from "../app/functions/music";
 import { Command, Route } from "../app/router";
 
 export const commands: Command[] = [
@@ -7,6 +12,7 @@ export const commands: Command[] = [
   { name: "total", description: "Display total song" },
   { name: "join", description: "Join Music" },
   { name: "leave", description: "Leave voice" },
+  { name: "now", description: "Show now playing song" },
 ];
 
 export const routes: Route[] = [
@@ -14,4 +20,5 @@ export const routes: Route[] = [
   { name: "total", action: list },
   { name: "join", action: joinMusic },
   { name: "leave", action: leaveVoice },
+  { name: "now", action: getNowPlaying },
 ];

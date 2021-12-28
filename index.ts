@@ -8,6 +8,10 @@ process.on("unhandledRejection", (error: Error) => {
   globalErrorHandler(error);
 });
 
+process.on("uncaughtException", (error) => {
+  globalErrorHandler(error);
+});
+
 const app = new App();
 app.start();
 export default app;
