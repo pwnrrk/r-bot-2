@@ -10,14 +10,12 @@ import { commandHandler, getMusicList } from "./utilities";
 import Music from "./interfaces/music";
 import { startMusic } from "./functions/music";
 import ConnecetedGuild from "./interfaces/connectedGuild";
-import express from "express";
 
 export default class App extends Client {
   musics: Music[];
   nowPlaying?: Music;
   player: AudioPlayer;
   connectedGuild: ConnecetedGuild[];
-  http: express.Express;
   constructor() {
     super({
       intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES],
@@ -27,7 +25,6 @@ export default class App extends Client {
     });
     this.musics = [];
     this.connectedGuild = [];
-    this.http = express();
   }
   async start() {
     this.on("ready", () => {
@@ -48,14 +45,6 @@ export default class App extends Client {
     this.on("guildCreate", (guild) => {
       const commandRouter = new CommandRouter();
       commandRouter.registerOne(commands, guild.id);
-    });
-
-    this.http.get("/", (request, response) => {
-      response.send("Bot are running");
-    });
-
-    this.http.listen("3000", () => {
-      console.log("Server running on http://localhost:3000");
     });
 
     this.musics = await getMusicList();
