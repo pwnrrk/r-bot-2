@@ -1,5 +1,9 @@
 import { Client, Intents } from "discord.js";
-import { AudioPlayer, createAudioPlayer } from "@discordjs/voice";
+import {
+  AudioPlayer,
+  createAudioPlayer,
+  NoSubscriberBehavior,
+} from "@discordjs/voice";
 import { commands } from "../routes/routes";
 import { CommandRouter } from "./router";
 import { commandHandler, getMusicList } from "./utilities";
@@ -18,7 +22,9 @@ export default class App extends Client {
     super({
       intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES],
     });
-    this.player = createAudioPlayer();
+    this.player = createAudioPlayer({
+      behaviors: { noSubscriber: NoSubscriberBehavior.Play },
+    });
     this.musics = [];
     this.connectedGuild = [];
     this.http = express();
