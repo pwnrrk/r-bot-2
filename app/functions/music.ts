@@ -26,6 +26,7 @@ function setNowPlaying(music: Music) {
     name: `${app.nowPlaying?.title} by ${app.nowPlaying.artist}`,
     type: "LISTENING",
   });
+  console.log(`Playing ${app.nowPlaying.title} by ${app.nowPlaying.artist}`);
 }
 export function startMusic() {
   const nextSong = getNextSong();
