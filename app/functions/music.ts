@@ -37,7 +37,9 @@ export function startMusic() {
     console.trace(error);
   });
 
-  app.player.on(AudioPlayerStatus.Idle, () => {
+  app.player.on(AudioPlayerStatus.Idle, async () => {
+    if (app.nowPlaying && app.nowPlaying.id >= app.musics.length)
+      await refreshMusicList();
     const nextSong = getNextSong();
     const resource = createAudioResource(nextSong.path);
     app.player.play(resource);
