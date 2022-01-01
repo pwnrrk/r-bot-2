@@ -33,6 +33,7 @@ export function startMusic() {
   const resource = createAudioResource(nextSong.path);
   app.player.play(resource);
   setNowPlaying(nextSong);
+  scheduleRefresh();
 
   app.player.on("error", (error) => {
     console.trace(error);
@@ -77,4 +78,8 @@ export async function getNowPlaying(interaction: CommandInteraction) {
   await interaction.reply(
     `Now playing ${app.nowPlaying?.title} by ${app.nowPlaying?.artist}`
   );
+}
+
+function scheduleRefresh() {
+  setInterval(refreshMusicList, 1000 * 60 * 60);
 }
