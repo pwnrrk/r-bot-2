@@ -36,6 +36,7 @@
     "express": "^4.17.2",
     "ffmpeg-static": "^4.4.1",
     "libsodium-wrappers": "^0.7.9",
-    "music-metadata": "^7.11.4"
+    "music-metadata": "^7.11.4",
+    "node-fetch": "v2.6.x"
   }
 }
