@@ -80,6 +80,13 @@ export async function getNowPlaying(interaction: CommandInteraction) {
   );
 }
 
+export async function getQues(interaction: CommandInteraction) {
+  const nowId = app.nowPlaying?.id as number;
+  await interaction.reply(
+    `Next ${app.musics[nowId].title} by ${app.musics[nowId].artist}`
+  );
+}
+
 function scheduleRefresh() {
   setInterval(refreshMusicList, 1000 * 60 * 60);
 }
