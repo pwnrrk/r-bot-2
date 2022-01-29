@@ -7,11 +7,11 @@ export default class Http {
     this.instance = express();
   }
   start() {
-    this.instance.get("/", (response: express.Response) => {
+    this.instance.get("/", (request, response) => {
       response.send("Bot are running");
     });
 
-    this.instance.get("/api/refresh", async (response: express.Response) => {
+    this.instance.get("/api/refresh", async (request, response) => {
       try {
         await refreshMusicList();
         response.json({
